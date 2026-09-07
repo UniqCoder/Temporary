@@ -19,6 +19,18 @@ capture → remember → expire → forget
 - **The expiry is the point, not a feature bolted onto notes.** Every memory has an expiry timestamp as a first-class field, not an optional reminder.
 - **You get warned before you forget.** A notification fires shortly before expiry ("forgetting in 12 min") and again when it's actually gone, so nothing disappears without warning.
 
+## Install on Android
+
+No build, no setup — grab the APK and install it:
+
+**[Download Temporary.apk](https://github.com/UniqCoder/Temporary/releases/latest/download/Temporary.apk)** (from the [latest release](https://github.com/UniqCoder/Temporary/releases/latest))
+
+1. Download the APK on your phone.
+2. Open it. Android will warn you about installing from an unknown source (this app isn't on the Play Store yet) — tap **Settings → allow this source**, then go back and install.
+3. Open the app and sign up.
+
+Requires Android 7.0 (API 24) or newer.
+
 ## What it actually does
 
 - Capture a memory with one line of text and a duration — `30 min`, `2 hours`, `tonight`, `tomorrow`, `3 days`, or a custom date/time.
@@ -66,6 +78,8 @@ GET    /api/health
 Identity (signup/login/logout/profile edits) is handled client-side directly against Supabase Auth. The backend verifies the resulting bearer token on every request and is the only thing that can permanently delete an account — that needs Supabase's service-role key, which no client ever holds. Every memory route is ownership-checked server-side: a request for a memory you don't own returns 404, not 403, so existence itself isn't leaked.
 
 ## Running it locally
+
+For development only — most people just want the [Android APK](#install-on-android) above.
 
 ```bash
 docker compose up -d          # Postgres on localhost:5433
