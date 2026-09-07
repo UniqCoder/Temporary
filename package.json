@@ -1,0 +1,35 @@
+{
+  "name": "temporary-memory",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "mobile"
+  ],
+  "private-workspace-order": [
+    "apps/backend",
+    "apps/frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,green \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev --workspace apps/backend",
+    "dev:web": "npm run dev --workspace apps/frontend",
+    "dev:mobile": "npm run start --workspace mobile",
+    "build": "npm run build --workspace apps/backend && npm run build --workspace apps/frontend",
+    "start": "npm run start --workspace apps/backend",
+    "typecheck": "npm run typecheck --workspace packages/shared && npm run typecheck --workspace apps/backend && npm run typecheck --workspace apps/frontend && npm run typecheck --workspace mobile",
+    "prisma:deploy": "npm run prisma:deploy --workspace apps/backend",
+    "prisma:studio": "npm run prisma:studio --workspace apps/backend",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "allowScripts": {
+    "prisma@6.19.3": true,
+    "@prisma/engines@6.19.3": true,
+    "esbuild@0.28.2": true
+  }
+}

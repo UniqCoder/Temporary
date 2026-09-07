@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Temporary.",
+    "slug": "temporary-memory",
+    "scheme": "temporary-memory",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0d0d0c",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.velnixlabs.temporary",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#d8fd51",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

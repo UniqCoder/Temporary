@@ -1,0 +1,33 @@
+// Temporary Memory — Prisma schema
+// expiresAt is the single source of truth for expiration.
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MemorySource {
+  text
+  voice
+}
+
+// Identity is owned by Supabase Auth (a separate project/database), so
+// `userId` here is an opaque Supabase user id — no local FK is possible.
+model Memory {
+  id        String       @id @default(cuid())
+  userId    String
+  title     String
+  content   String       @db.Text
+  source    MemorySource @default(text)
+  expiresAt DateTime
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  expiredAt DateTime?
+
+  @@index([userId, expiresAt])
+}
